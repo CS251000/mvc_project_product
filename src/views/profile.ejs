@@ -1,0 +1,23 @@
+<% users.forEach(user => { %>
+    <h4>Username: <%= user.name %></h4>
+    <h4>EmailID: <%= user.email %></h4>
+    <h4>Password: 
+        <input type="password" value="<%= user.password %>" id="password_<%= user.id %>" readonly>
+        <button onclick="togglePassword('<%= user.id %>')">Show/Hide</button>
+    </h4>
+<% }) %>
+
+<script>
+    function togglePassword(userId) {
+        var passwordInput = document.getElementById("password_" + userId);
+        var button = event.target;
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            button.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            button.textContent = "Show";
+        }
+    }
+</script>

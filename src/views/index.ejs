@@ -1,0 +1,69 @@
+<% function slugify(text) { %>
+    <% text = text.toString().toLowerCase() %>
+    <% text = text.replace(/\s+/g, '-') %>           <!-- Replace spaces with - -->
+    <% text = text.replace(/[^\w\-]+/g, '') %>       <!-- Remove all non-word chars -->
+    <% text = text.replace(/\-\-+/g, '-') %>         <!-- Replace multiple - with single - -->
+    <% text = text.replace(/^-+/, '') %>             <!-- Trim - from start of text -->
+    <% text = text.replace(/-+$/, '') %>             <!-- Trim - from end of text -->
+    <% return text; %>
+<% } %>
+
+
+<!-- Now you can use the slugify function -->
+<% products.forEach(product => { %>
+    <tr id="<%= slugify(product.name) %>">
+        <!-- rest of your code -->
+    </tr>
+<% }); %>
+
+<%if(locals.lastVisit){%>
+<div class="alert alert-primary" role="alert">
+    Last Visited: <%=locals.lastVisit%>
+  </div>
+  <%}%>
+<h1 class="mt-5 mb-4 header">Products</h1>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col"> Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product=> { %>
+            
+            
+            <tr id="<%= slugify(product.name) %>">
+
+                    
+                    <th scope="row">
+                        <%= product.id %>
+                    </th>
+                    <td>
+                        <%= product.name %>
+                    </td>
+                    <td>
+                        <%= product.desc %>
+                    </td>
+                    <td><%= product.price %>
+                    </td>
+                    <td>
+                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="max-width: 100px;">
+                    </td>
+                    <td>
+                        <a href="/update-product/<%=product.id %>" class="btn btn-warning">Update</a>
+                        <button class="btn btn-danger" onclick="deleteProduct('<%=product.id %>')">Delete</button>
+    
+                    </td>
+                
+                </tr>
+            
+            
+            <% }) %>
+    </tbody>
+</table>
+</div>
