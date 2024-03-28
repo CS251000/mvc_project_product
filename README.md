@@ -1,4 +1,4 @@
-# Job Portal
+# Online Wharehouse
 
 ## Description
 This project is a Online Warehouse web application built using Node.js, Express, EJS views, and Multer for file uploads. It allows users to maintain their products easily.
